@@ -1,0 +1,149 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Administration
+{% endblock %}
+
+{% block body %}
+
+	<style>
+		span {
+			color: #333;
+			font-weight: 100px;
+		}
+		.user-info-columns {
+			display: flex;
+			justify-content: space-between;
+			gap: 40px;
+		}
+
+		.user-info-column {
+			flex: 1;
+		}
+		.user-info-column h3 {
+			font-size: 1.5rem;
+			margin-bottom: 1rem;
+			margin-top: 1rem;
+			color: #a76f4a;
+		}
+		.user-info-column h4 {
+			font-size: 2rem;
+			margin-bottom: 1rem;
+			margin-top: 1rem;
+			color: #333;
+		}
+		.button-container {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		button {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			color: whitesmoke;
+			background-color: #b26f66;
+			text-decoration: none;
+			font-weight: bold;
+			text-align: center;
+			border: 2px solid transparent;
+			padding: 13px 30px;
+			border-radius: 30px;
+			transition: 0.4s;
+		}
+		button:hover {
+			background-color: transparent;
+			border: 2px solid #b26f66;
+			cursor: pointer;
+			color: #333;
+		}
+		i {
+			font-size: 50px;
+			display: block;
+			text-align: center;
+			margin: 25px 0;
+			color: #333;
+		}
+		.success-msg {
+			color: #270;
+			background-color: #dff0d8;
+			border: 1px solid #d6e9c6;
+			color: #3c763d;
+			border-radius: 5px;
+			padding: 10px;
+			border-radius: 5px;
+			width: 50%;
+			margin-top: 20px;
+		}
+		.msg-container {
+			display: flex;
+			justify-content: center;
+		}
+	</style>
+	{% for message in app.flashes("message") %}
+		<div class="msg-container">
+			<div class="success-msg">
+
+				<i class="fa fa-check"></i>
+				{{ message }}
+
+			</div>
+		</div>
+	{% endfor %}
+	<br>
+	<br>
+	{% if "ROLE_ADMIN" in app.user.roles %}
+		<section class="articles1">
+			<h2>
+				<i class="fa-regular fa-user"></i>
+				<span>
+					{{app.user.nom}}
+				</span>
+			</h2>
+			<div class="user-info-columns">
+				<div class="user-info-column">
+					<h3>
+						Nom
+					</h3>
+					<h4>
+						{{ app.user.nom }}
+					</h4>
+					<h3>
+						E-mail
+					</h3>
+					<h4>
+						{{ app.user.email }}
+					</h4>
+				</div>
+			</div>
+			<br>
+			<div class="button-container">
+				<a href="{{path("user_pass_edit")}}">
+					<button>
+						Modifier le mot de passe
+					</button>
+				</a>
+			</div>
+			<br>
+			<br>
+			<div class="button-container">
+				<a href="{{path("admin_categories_home")}}">
+					<button>
+						Les catégories
+					</button>
+				</a>
+				<a href="{{path("admin_annonces_home")}}">
+					<button>
+						Les annonces
+					</button>
+				</a>
+				<a href="{{path("admin_users_home")}}">
+					<button>
+						Les Utilisateurs
+					</button>
+				</a>
+			</div>
+		</section>
+	{% endif %}
+{% endblock %}

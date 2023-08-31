@@ -1,0 +1,134 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{% if categorie != 'Autre' %}
+		AJOUTER UNE ANNONCE
+		{{categorie|upper}}
+	{% else %}
+		AJOUTER UNE ANNONCE
+	{% endif %}
+{% endblock %}
+
+{% block body %}
+	<style>
+		input[type=file]::file-selector-button {
+			margin-right: 20px;
+			border: none;
+			background: #b26f66;
+			padding: 10px 20px;
+			border-radius: 10px;
+			color: #fff;
+			cursor: pointer;
+			transition: background 0.2s ease-in-out;
+		}
+
+		input[type=file]::file-selector-button:hover {
+			background-color: transparent;
+			border: 2px solid #b26f66;
+			cursor: pointer;
+			color: #333;
+		}
+
+		.button-container {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		button {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			color: whitesmoke;
+			background-color: #b26f66;
+			text-decoration: none;
+			font-weight: bold;
+			text-align: center;
+			border: 2px solid transparent;
+			padding: 13px 30px;
+			border-radius: 30px;
+			transition: 0.4s;
+		}
+		button:hover {
+			background-color: transparent;
+			border: 2px solid #b26f66;
+			cursor: pointer;
+			color: #333;
+		}
+		i {
+			font-size: 50px;
+			display: block;
+			text-align: center;
+			margin: 25px 0;
+			color: #333;
+		}
+	</style>
+	<section class="articles1">
+		{% if categorie != 'Autre' %}
+			<h2>
+				AJOUTER UNE ANNONCE
+				{{categorie|upper}}
+			</h2>
+		{% else %}
+			<h2>
+				AJOUTER UNE ANNONCE
+			</h2>
+		{% endif %}
+		{{form_start(form, {'attr': { 'style': 'width: 100%;'}}
+		)}}
+		{{form_row(form.titre, {'attr': {'style': 'width: 100%;'}}
+		)}}
+		{{form_row(form.texte, {'attr': {'style': 'width: 100%;'}}
+		)}}
+		<div style="display: flex; justify-content: center;">
+			{{form_row(form.photo,{'attr' : {'type' : 'file','style': 'width: 100%;'}}
+			)}}
+		</div>
+		{% if categorie == 'Immobilier' %}
+			{{form_row(form.ville, {'attr': {'style': 'width: 100%;'}}
+			)}}
+			{{form_row(form.region, {'attr': {'style': 'width: 100%;'}}
+			)}}
+			{{form_row(form.pays, {'attr': {'style': 'width: 100%;'}}
+			)}}
+			{{form_row(form.prix, {'attr': {'style': 'width: 100%;'}}
+			)}}
+		{% endif %}
+		{% if categorie == 'Voitures & Motos' %}
+			{{form_row(form.marque, {'attr': {'style': 'width: 100%;'}}
+			)}}
+			{{form_row(form.prix, {'attr': {'style': 'width: 100%;'}}
+			)}}
+		{% endif %}
+		{% if categorie == 'Service' %}
+			{{form_row(form.typeservice, {'attr': {'style': 'width: 100%;'}}
+			)}}
+			{{form_row(form.prix, {'attr': {'style': 'width: 100%;'}}
+			)}}
+		{% endif %}
+		{% if categorie == 'Vêtements' %}
+			{{form_row(form.marque, {'attr': {'style': 'width: 100%;'}}
+			)}}
+			{{form_row(form.prix, {'attr': {'style': 'width: 100%;'}}
+			)}}
+		{% endif %}
+		{% if categorie == 'Mobiles & Tablettes' %}
+			{{form_row(form.marque, {'attr': {'style': 'width: 100%;'}}
+			)}}
+			{{form_row(form.prix, {'attr': {'style': 'width: 100%;'}}
+			)}}
+		{% endif %}
+		{% if categorie == 'Autre' %}
+			{{form_row(form.typeservice, {'attr': {'style': 'width: 100%;'}}
+			)}}
+			{{form_row(form.prix, {'attr': {'style': 'width: 100%;'}}
+			)}}
+		{% endif %}
+		<div class="button-container">
+			<button type="submit">
+				Ajouter
+			</button>
+		</div>
+		{{form_end(form)}}
+	</section>
+{% endblock %}

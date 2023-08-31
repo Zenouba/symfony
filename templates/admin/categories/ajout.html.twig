@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	AJOUTER UNE CATÉGORIE
+{% endblock %}
+
+{% block body %}
+	<style>
+		.button-container {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		button {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			color: whitesmoke;
+			background-color: #b26f66;
+			text-decoration: none;
+			font-weight: bold;
+			text-align: center;
+			border: 2px solid transparent;
+			padding: 13px 30px;
+			border-radius: 30px;
+			transition: 0.4s;
+		}
+		button:hover {
+			background-color: transparent;
+			border: 2px solid #b26f66;
+			cursor: pointer;
+			color: #333;
+		}
+	</style>
+	<section class="articles1">
+		<h2>
+			AJOUTER UNE CATÉGORIE
+		</h2>
+		{{form_start(form, {'attr': { 'style': 'width: 100%;'}}
+		)}}
+		{{form_row(form.nom, {'attr': {'style': 'width: 100%;'}}
+		)}}
+		<div class="button-container">
+			<button type="submit">
+				Ajouter
+			</button>
+		</div>
+		{{form_end(form)}}
+	</section>
+
+{% endblock %}

@@ -1,0 +1,162 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	GÉRER LES CATÉGORIES
+{% endblock %}
+
+{% block body %}
+	<style>
+		table {
+			width: 800px;
+			border-collapse: collapse;
+			overflow: hidden;
+			box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+		}
+
+		th,
+		td {
+			padding: 15px;
+			background-color: rgba(255, 255, 255, 0.2);
+			color: #333;
+			text-align: center;
+
+		}
+
+		thead {
+			th {
+				background-color: #55608f;
+			}
+		}
+
+		tbody {
+			tr {
+				&:hover {
+					background-color: rgba(255, 255, 255, 0.3);
+				}
+			}
+			td {
+				position: relative;
+				&:hover {
+					&:before {
+						content: "";
+						position: absolute;
+						left: 0;
+						right: 0;
+						top: -9999px;
+						bottom: -9999px;
+						background-color: rgba(255, 255, 255, 0.2);
+						z-index: -1;
+					}
+				}
+			}
+		}
+		.success-msg {
+			color: #270;
+			background-color: #dff0d8;
+			border: 1px solid #d6e9c6;
+			color: #3c763d;
+			border-radius: 5px;
+			padding: 10px;
+			border-radius: 5px;
+			width: 50%;
+			margin-top: 20px;
+		}
+		.msg-container {
+			display: flex;
+			justify-content: center;
+		}
+		.button-container {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		button {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			color: whitesmoke;
+			background-color: #b26f66;
+			text-decoration: none;
+			font-weight: bold;
+			text-align: center;
+			border: 2px solid transparent;
+			padding: 13px 30px;
+			border-radius: 30px;
+			transition: 0.4s;
+		}
+		button:hover {
+			background-color: transparent;
+			border: 2px solid #b26f66;
+			cursor: pointer;
+			color: #333;
+		}
+	</style>
+	{% for message in app.flashes("message") %}
+		<div class="msg-container">
+			<div class="success-msg">
+				<i class="fa fa-check"></i>
+				{{ message }}
+			</div>
+		</div>
+	{% endfor %}
+	<br>
+	<br>
+	<section class="articles1">
+		<h2 style="margin-top:1rem;">
+			GÉRER LES CATÉGORIES
+			<small>
+				{{categories|length}}
+			</small>
+		</h2>
+		<div class="container">
+			<table>
+				<thead>
+					<tr>
+						<th>
+							ID
+						</th>
+						<th>
+							NOM
+						</th>
+						<th>
+							ACTIONS
+						</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					{% for categorie in categories %}
+						<tr>
+							<td>
+								{{categorie.id}}
+
+							</td>
+							<td>
+								{{categorie.nom}}
+							</td>
+							<td>
+								<div class="button-container">
+									<a href="{{path("admin_categories_modifier", {id: categorie.id})}}">
+										<button tyep="submit">
+											Modifier
+										</button>
+									</a>
+								</div>
+							</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+
+			</table>
+		</div>
+	</section>
+	<br>
+	<div class="button-container">
+		<a href="{{ path("admin_categories_ajout") }}">
+			<button>
+				Ajouter une catégorie
+			</button>
+		</a>
+	</div>
+{% endblock %}

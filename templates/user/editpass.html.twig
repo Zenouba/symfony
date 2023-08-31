@@ -1,0 +1,101 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Modification du Mot de passe
+{% endblock %}
+
+{% block body %}
+	<style>
+		.coolinput {
+			display: flex;
+			flex-direction: column;
+			width: fit-content;
+			position: static;
+			width: 100%;
+		}
+
+		.coolinput .text {
+			font-size: 1.5rem;
+			color: #b26f66;
+			font-weight: 700;
+			position: relative;
+			top: 0.5rem;
+			margin: 0 0 0 7px;
+			padding: 0 3px;
+			background: #e8e8e8;
+			width: fit-content;
+		}
+		.coolinput input[type=password].input {
+			padding: 11px 10px;
+			font-size: 2rem;
+			border: 2px #b26f66 solid;
+			border-radius: 5px;
+			background: #e8e8e8;
+			color: black;
+		}
+		.coolinput input[type=password].input:focus {
+			outline: none;
+		}
+		button {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			color: whitesmoke;
+			background-color: #b26f66;
+			text-decoration: none;
+			font-weight: bold;
+			text-align: center;
+			border: 2px solid transparent;
+			padding: 13px 30px;
+			border-radius: 30px;
+			transition: 0.4s;
+		}
+		button:hover {
+			background-color: transparent;
+			border: 2px solid #b26f66;
+			cursor: pointer;
+			color: #333;
+		}
+		.button-container {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+		.warning-msg {
+			color: #9F6000;
+			background-color: #FEEFB3;
+		}
+	</style>
+
+
+	<section class="articles1">
+		{% for message in app.flashes('error') %}
+			<div class="warning-msg">
+				<i class="fa fa-warning"></i>
+				{{message}}
+			</div>
+		</div>
+	{% endfor %}
+	<h2>
+		MODIFICATION DU MOT DE PASSE
+	</h2>
+	<form method="post">
+		<div class="coolinput">
+			<label for="" class="text">
+				Mot de passe
+			</label>
+			<input type="password" name="pass" id="pass" class="input">
+		</div>
+		<div class="coolinput">
+			<label for="" class="text">
+				Confirmer le mot de passe
+			</label>
+			<input type="password" name="pass2" id="pass2" class="input">
+		</div>
+		<div class="button-container">
+			<button>
+				Valider
+			</button>
+		</div>
+	</form>
+</section>{% endblock %}

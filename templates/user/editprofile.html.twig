@@ -1,0 +1,130 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	MODIFICATION DU PROFIL
+{% endblock %}
+
+{% block body %}
+
+	<style>
+		.coolinput {
+			display: flex;
+			flex-direction: column;
+			width: fit-content;
+			position: static;
+			width: 100%;
+		}
+
+		.coolinput .text {
+			font-size: 1.5rem;
+			color: #b26f66;
+			font-weight: 700;
+			position: relative;
+			top: 0.5rem;
+			margin: 0 0 0 7px;
+			padding: 0 3px;
+			background: #e8e8e8;
+			width: fit-content;
+		}
+
+		.coolinput input[type=text].input {
+			padding: 11px 10px;
+			font-size: 2rem;
+			border: 2px #b26f66 solid;
+			border-radius: 5px;
+			background: #e8e8e8;
+			color: black;
+		}
+
+		.coolinput input[type=text].input:focus {
+			outline: none;
+		}
+
+		.custom-select-style {
+			border: 2px solid #b26f66;
+			padding: 5px;
+			background: #e8e8e8;
+			border-radius: 5px;
+			font-size: 2rem;
+		}
+		.custom-select-style option {
+			background-color: #e8e8e8;
+			width: 2rem;
+			color: #333;
+			font-size: 2rem;
+			height: 40px;
+		}
+		button {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			color: whitesmoke;
+			background-color: #b26f66;
+			text-decoration: none;
+			font-weight: bold;
+			text-align: center;
+			border: 2px solid transparent;
+			padding: 13px 30px;
+			border-radius: 30px;
+			transition: 0.4s;
+		}
+
+		button:hover {
+			background-color: transparent;
+			border: 2px solid #b26f66;
+			cursor: pointer;
+			color: #333;
+		}
+
+		.button-container {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+	</style>
+
+	<section class="articles1">
+		<h2>
+			MODIFICATION DU PROFIL
+		</h2>
+		{{form_start(form)}}
+		<div class="coolinput">
+			{{ form_row(form.nom, {'attr': {'class': 'input','type':'text','type':'text', 'style':'width: 100%;text-align:center;'}}
+			) }}
+		</div>
+		<div class="coolinput">
+			{{ form_row(form.prenom, {'attr': {'class': 'input','type':'text', 'style':'width: 100%;text-align:center;' }}
+			) }}
+		</div>
+		<div class="coolinput">
+			{{ form_row(form.sexe, {'attr': {'class': 'custom-select-style','type':'text','style':'width: 100%;text-align:center;' }}
+			) }}
+		</div>
+
+		<div class="coolinput">
+			{{ form_row(form.numtel, {'attr': {'class': 'input','type':'text', 'style':'width: 100%;text-align:center;' }}
+			) }}
+		</div>
+
+		<div class="coolinput">
+			{{ form_row(form.ville, {'attr': {'class': 'input','type':'text', 'style':'width: 100%;text-align:center;' }}
+			) }}
+		</div>
+
+		<div class="coolinput">
+			{{ form_row(form.region, {'attr': {'class': 'input','type':'text', 'style':'width: 100%;text-align:center;' }}
+			) }}
+		</div>
+
+		<div class="coolinput">
+			{{ form_row(form.pays, {'attr': {'class': 'custom-select-style','type':'text','style':'width: 100%;text-align:center;' }}
+			) }}
+		</div>
+		<div class="button-container">
+			<button type="submit">
+				VALIDER
+			</button>
+		</div>
+		{{form_end(form)}}
+	</section>
+{% endblock %}

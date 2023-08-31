@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	NOS CATÉGORIES
+{% endblock %}
+{% block stylesheets %}
+	{{ parent() }}
+{% endblock %}
+{% block body %}
+	<style>
+		.carte-button {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			color: whitesmoke;
+			background-color: #b26f66;
+			text-decoration: none;
+			font-weight: bold;
+			text-align: center;
+			border: 2px solid transparent;
+			padding: 13px 30px;
+			border-radius: 30px;
+			transition: 0.4s;
+		}
+		.carte-button:hover {
+			background-color: #b26f66;
+			border: 2px solid #b26f66;
+			cursor: pointer;
+			color: #333;
+		}
+	</style>
+	<h2 style="text-align:center;">
+		NOS CATÉGORIES
+	</h2>
+	<div class="row" style="display: flex; flex-wrap: nowrap; ;">
+		{% for category in categories %}
+			<div class=" col-md-4">
+				<div class="carte">
+					<div class="carte-details">
+						<p class="text-title">
+							{{ category.nom }}
+						</p>
+					</div>
+					<a href="{{ path("app_annonce_by_category", { categorie: category.nom }) }}">
+						<button class="carte-button">
+							Explorez
+						</button>
+					</a>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+
+{% endblock %}

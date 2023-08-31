@@ -1,0 +1,203 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	PROFIL
+{% endblock %}
+{% block stylesheets %}
+	{{ parent() }}
+{% endblock %}
+{% block body %}
+	<style>
+		span {
+			color: #333;
+			font-weight: 100px;
+		}
+		.user-info-columns {
+			display: flex;
+			justify-content: space-between;
+			gap: 40px;
+		}
+
+		.user-info-column {
+			flex: 1;
+		}
+		.user-info-column h3 {
+			font-size: 1.5rem;
+			margin-bottom: 1rem;
+			margin-top: 1rem;
+			color: #a76f4a;
+		}
+		.user-info-column h4 {
+			font-size: 2rem;
+			margin-bottom: 1rem;
+			margin-top: 1rem;
+			color: #333;
+		}
+		.button-container {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		button {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			color: whitesmoke;
+			background-color: #b26f66;
+			text-decoration: none;
+			font-weight: bold;
+			text-align: center;
+			border: 2px solid transparent;
+			padding: 13px 30px;
+			border-radius: 30px;
+			transition: 0.4s;
+		}
+		button:hover {
+			background-color: transparent;
+			border: 2px solid #b26f66;
+			cursor: pointer;
+			color: #333;
+		}
+		.articles1 i {
+			font-size: 40px;
+			display: block;
+			text-align: center;
+			margin: 25px 0;
+			color: #333;
+		}
+		.success-msg {
+			color: #270;
+			background-color: #dff0d8;
+			border: 1px solid #d6e9c6;
+			color: #3c763d;
+			border-radius: 5px;
+			padding: 10px;
+			border-radius: 5px;
+			width: 50%;
+			margin-top: 20px;
+		}
+		.msg-container {
+			display: flex;
+			justify-content: center;
+		}
+	</style>
+	{% for message in app.flashes("success") %}
+		<div class="msg-container">
+			<div class="success-msg">
+				<i class="fa fa-check"></i>
+				{{ message }}
+			</div>
+		</div>
+	{% endfor %}
+	<br>
+	<br>
+	<section class="articles1">
+		<h2 style="text-align:center;">
+			<i class="fa-regular fa-user"></i>
+			<span>
+				{{app.user.nom}}
+				{{app.user.prenom}}
+			</span>
+		</h2>
+		<div class="user-info-columns">
+			<div class="user-info-column">
+				<h3>
+					Nom
+				</h3>
+				<h4>
+					{{ app.user.nom }}
+				</h4>
+				<h3>
+					Prénom
+				</h3>
+				<h4>
+					{{ app.user.prenom }}
+				</h4>
+				<h3>
+					E-mail
+				</h3>
+				<h4>
+					{{ app.user.email }}
+				</h4>
+				<h3>
+					Numéro de téléphone
+				</h3>
+				<h4>
+					{{ app.user.numtel }}
+				</h4>
+			</div>
+			<div class="user-info-column">
+				<h3>
+					Sexe
+				</h3>
+				<h4>
+					{{ app.user.sexe }}
+				</h4>
+				<h3>
+					Ville
+				</h3>
+				<h4>
+					{{ app.user.ville }}
+				</h4>
+				<h3>
+					Région
+				</h3>
+				<h4>
+					{{ app.user.region }}
+				</h4>
+				<h3>
+					Pays
+				</h3>
+				<h4>
+					<span class="fi fi-{{ app.user.pays  |lower }} fis"></span>
+				</h4>
+			</div>
+		</section>
+		<br>
+		<div class="button-container">
+			<a href="{{path("user_profil_edit")}}">
+				<button>
+					Modifier le profile
+				</button>
+			</a>
+			<a href="{{path("user_pass_edit")}}">
+				<button>
+					Modifier le mot de passe
+				</button>
+			</a>
+		</div>
+		<div>
+			<h2 style="text-align:center; color:#333;">
+				Vos annonces (
+				{{app.user.annonces|length}}
+				)
+			</h2>
+			<br>
+		</div>
+		<section class="articles">
+			{% for annonce in app.user.annonces %}
+				<article>
+					<div class="article-wrapper">
+						<figure>
+							<img src="{{ asset('/uploads/'~annonce.photo) }}" alt=""/>
+						</figure>
+						<div class="article-body">
+							<h2>
+								{{annonce.titre}}
+							</h2>
+							<a href="{{path("annonces_show" , {id:annonce.id})}}" class="read-more">
+								Plus de détails
+								<span class="sr-only">
+									about this is some title
+								</span>
+								<svg xmlns="http://www.w3.org/2000/svg" class="icon" viewbox="0 0 20 20" fill="currentColor">
+									<path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
+								</svg>
+							</a>
+						</div>
+					</div>
+				</article>
+			{% endfor %}
+		</section>
+	{% endblock %}

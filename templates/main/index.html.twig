@@ -1,0 +1,285 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	ACCUEIL
+{% endblock %}
+
+{% block body %}
+	<style>
+		.about {
+			width: 100%;
+			padding: 70px 0;
+			background-color: #e8e8e8;
+		}
+
+		.about-text {
+			width: 550px;
+		}
+		.main {
+			width: 1130px;
+			max-width: 95%;
+			margin: 0 auto;
+			display: flex;
+			align-items: center;
+			justify-content: space-around;
+		}
+
+		.about-text h2 {
+			color: #333;
+			font-size: 3em;
+			text-transform: capitalize;
+			margin-bottom: 20px;
+			text-align: center;
+		}
+
+		.about-text h5 {
+			color: #333;
+			letter-spacing: 2px;
+			font-size: 22px;
+			margin-bottom: 25px;
+			text-transform: capitalize;
+			text-align: center;
+		}
+		.about-text h3 {
+			color: #333;
+			letter-spacing: 2px;
+			font-size: 1.5rem;
+			text-transform: capitalize;
+			text-align: center;
+		}
+		.button-container {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		button {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			color: whitesmoke;
+			background-color: #b26f66;
+			text-decoration: none;
+			font-weight: bold;
+			text-align: center;
+			border: 2px solid transparent;
+			padding: 13px 30px;
+			border-radius: 30px;
+			transition: 0.4s;
+		}
+		button:hover {
+			background-color: transparent;
+			border: 2px solid #b26f66;
+			cursor: pointer;
+			color: #333;
+		}
+		span {
+			color: #b26f66;
+			font-weight: 100px;
+		}
+		.carte-button {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			color: whitesmoke;
+			background-color: #b26f66;
+			text-decoration: none;
+			font-weight: bold;
+			text-align: center;
+			border: 2px solid transparent;
+			padding: 13px 30px;
+			border-radius: 30px;
+			transition: 0.4s;
+		}
+		.carte-button:hover {
+			background-color: #b26f66;
+			border: 2px solid #b26f66;
+			cursor: pointer;
+			color: #333;
+		}
+	</style>
+	<section class="s-bricks">
+		<div class="masonry">
+			<div class="bricks-wrapper h-group">
+				<div class="grid-sizer"></div>
+				<div class="brick entry featured-grid animate-this">
+					<div class="entry__content" style="			background-color: #e8e8e8;">
+						{% for label, messages in app.flashes(['success', 'error']) %}
+							{% for message in messages %}
+								<div class="flash-{{ label }}">
+									{{ message }}
+								</div>
+							{% endfor %}
+						{% endfor %}
+						<div class="featured-post-slider">
+							<div class="featured-post-slide">
+								<div class="f-slide">
+									<div class="f-slide__background" style="background-image:url('{{asset('assets/imgs/immobilier.jpg')}}');"></div>
+									<div class="f-slide__overlay"></div>
+									<div class="f-slide__content">
+										<h1 class="f-slide__title">
+											<a href="{{path("app_standard")}}" title="">
+												Explorez les offres ou partagez les vôtres
+											</a>
+										</h1>
+									</div>
+								</div>
+							</div>
+							<div class="featured-post-slide">
+								<div class="f-slide">
+									<div class="f-slide__background" style="background-image:url('{{asset('assets/imgs/vetements.jpg')}}');"></div>
+									<div class="f-slide__overlay"></div>
+									<div class="f-slide__content">
+										<h1 class="f-slide__title">
+											<a href="{{path("app_standard")}}" title="">
+												Explorez les offres ou partagez les vôtres
+											</a>
+										</h1>
+									</div>
+								</div>
+							</div>
+							<div class="featured-post-slide">
+								<div class="f-slide">
+									<div class="f-slide__background" style="background-image:url('{{asset('assets/imgs/cars.jpg')}}');"></div>
+									<div class="f-slide__overlay"></div>
+									<div class="f-slide__content">
+										<h1 class="f-slide__title">
+											<a href="{{path("app_standard")}}" title="">
+												Explorez les offres ou partagez les vôtres
+											</a>
+										</h1>
+									</div>
+								</div>
+							</div>
+							<div class="featured-post-slide">
+								<div class="f-slide">
+									<div class="f-slide__background" style="background-image:url('{{asset('assets/imgs/mobile.jpg')}}');"></div>
+									<div class="f-slide__overlay"></div>
+									<div class="f-slide__content">
+										<h1 class="f-slide__title">
+											<a href="{{path("app_standard")}}" title="">
+												Explorez les offres ou partagez les vôtres
+											</a>
+										</h1>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="featured-post-nav">
+							<button class="featured-post-nav__prev">
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24">
+									<path d="M12.707 17.293L8.414 13H18v-2H8.414l4.293-4.293-1.414-1.414L4.586 12l6.707 6.707z"></path>
+								</svg>
+							</button>
+							<button class="featured-post-nav__next">
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24">
+									<path d="M11.293 17.293l1.414 1.414L19.414 12l-6.707-6.707-1.414 1.414L15.586 11H6v2h9.586z"></path>
+								</svg>
+							</button>
+						</div>
+					</div>
+				</div>
+			</section>
+			<h2 style="text-align:center;">
+				NOS CATÉGORIES
+			</h2>
+			<div class="row" style="display: flex; flex-wrap: nowrap; ;">
+				{% for category in categories %}
+					<div class=" col-md-4">
+						<div class="carte">
+							<div class="carte-details">
+								<p class="text-title">
+									{{ category.nom }}
+								</p>
+							</div>
+							<a href="{{ path("app_annonce_by_category", { categorie: category.nom }) }}">
+								<button class="carte-button">
+									Explorez
+								</button>
+							</a>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+			{% if not is_granted('ROLE_ADMIN') %}
+				{% if annonces is not null %}
+					<h2 style="text-align:center;">
+						ANNONCES RÉCENTES
+					</h2>
+					<br>
+					<section class="articles">
+						{% for annonce in annonces %}
+							<article>
+								<div class="article-wrapper">
+									<figure>
+										<img src="{{ asset('/uploads/'~annonce.photo) }}" alt=""/>
+									</figure>
+									<div class="article-body">
+										<h2>
+											{{annonce.titre}}
+										</h2>
+										<a href="{{path("annonces_show" , {id:annonce.id})}}" class="read-more">
+											Plus de détails
+											<span class="sr-only">
+												about this is some title
+											</span>
+											<svg xmlns="http://www.w3.org/2000/svg" class="icon" viewbox="0 0 20 20" fill="currentColor">
+												<path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
+											</svg>
+										</a>
+									</div>
+								</div>
+							</article>
+						{% endfor %}
+					</section>
+					<br>
+					<div class="button-container">
+						<a href="{{path("annonces_home")}}">
+							<button>
+								Voir Plus
+							</button>
+						</a>
+					</div>
+				{% endif %}
+			{% endif %}
+
+			<section class="about">
+				<div class="main">
+					<div class="about-text">
+						<h5>
+							À PROPOS
+							<span>
+								DE NOUS
+							</span>
+						</h5>
+						<h2>
+							POURQUOI NOUS CHOISIR ?
+						</h2>
+						<h3>
+							Large Sélection:
+							<span>
+								Nous proposons une vaste sélection d'annonces dans différentes catégories pour répondre à vos besoins.
+							</span>
+							<br>
+							Facilité d'Utilisation:
+							<span>
+								Notre interface conviviale rend la publication et la recherche d'annonces simples et intuitives.
+							</span>
+							<br>
+							Confiance et Sécurité:
+							<span>
+								Nous accordons une grande importance à la sécurité des transactions et à la confiance de nos utilisateurs.
+							</span>
+						</h3>
+						<div class="button-container">
+							<a href="{{path("app_about")}}">
+								<button type="button">
+									EN SAVOIR PLUS
+								</button>
+							</a>
+						</div>
+					</div>
+				</div>
+			</section>
+
+		{% endblock %}

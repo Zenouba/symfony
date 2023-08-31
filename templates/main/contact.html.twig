@@ -1,0 +1,115 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	NOUS CONTACTER
+{% endblock %}
+
+{% block body %}
+
+	<style>
+		.coolinput {
+			display: flex;
+			flex-direction: column;
+			width: fit-content;
+			position: static;
+			width: 100%;
+		}
+
+		.coolinput .text {
+			font-size: 1.5rem;
+			color: #b26f66;
+			font-weight: 700;
+			position: relative;
+			top: 0.5rem;
+			margin: 0 0 0 7px;
+			padding: 0 3px;
+			background: #e8e8e8;
+			width: fit-content;
+		}
+		.coolinput input[type=text].input {
+			padding: 11px 10px;
+			font-size: 2rem;
+			border: 2px #b26f66 solid;
+			border-radius: 5px;
+			background: #e8e8e8;
+			color: black;
+		}
+		.coolinput input[type=text].input:focus {
+			outline: none;
+		}
+		.coolinput input[type=email].input {
+			padding: 11px 10px;
+			font-size: 2rem;
+			border: 2px #b26f66 solid;
+			border-radius: 5px;
+			background: #e8e8e8;
+			color: black;
+		}
+		.coolinput input[type=email].input:focus {
+			outline: none;
+		}
+		button {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			color: whitesmoke;
+			background-color: #b26f66;
+			text-decoration: none;
+			font-weight: bold;
+			text-align: center;
+			border: 2px solid transparent;
+			padding: 13px 30px;
+			border-radius: 30px;
+			transition: 0.4s;
+		}
+		button:hover {
+			background-color: transparent;
+			border: 2px solid #b26f66;
+			cursor: pointer;
+			color: #333;
+		}
+		.button-container {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+	</style>
+
+
+	<section class="articles1">
+		<h2>
+			ENVOIE-NOUS UN MESSAGE
+		</h2>
+		<form method="post">
+			<div class="coolinput">
+				<label for="name" class="text">
+					Nom:
+				</label>
+				<input type="text" name="name" id="name" style="width: 100%;" class="input" required>
+			</div>
+			<div class="coolinput">
+				<label for="email" class="text">
+					E-mail:
+				</label>
+				<input type="email" name="email" id="email" style="width: 100%;" class="input" required>
+			</div>
+			<div class="coolinput">
+				<label for="subject" class="text">
+					Sujet:
+				</label>
+				<input type="text" name="subject" id="subject" style="width: 100%;" class="input" required>
+			</div>
+			<div class="coolinput">
+				<label for="message" class="text">
+					Message:
+				</label>
+				<textarea name="message" id="message" rows="5" style="width: 100%;" class="input" required></textarea>
+			</div>
+			<div class="button-container">
+				<button type="submit">
+					Envoyer
+				</button>
+			</div>
+		</form>
+	</section>
+{% endblock %}

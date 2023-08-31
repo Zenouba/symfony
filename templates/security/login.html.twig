@@ -1,0 +1,138 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Connexion
+{% endblock %}
+
+{% block body %}
+	<style>
+
+		.coolinput {
+			display: flex;
+			flex-direction: column;
+			width: fit-content;
+			position: static;
+			width: 100%;
+		}
+		.coolinput label.text {
+			font-size: 1.5rem;
+			color: #b26f66;
+			font-weight: 700;
+			position: relative;
+			top: 0.5rem;
+			margin: 0 0 0 7px;
+			padding: 0 3px;
+			background: #e8e8e8;
+			width: fit-content;
+		}
+		.coolinput input[type=email].input {
+			padding: 11px 10px;
+			font-size: 2rem;
+			border: 2px #b26f66 solid;
+			border-radius: 5px;
+			background: #e8e8e8;
+			color: black;
+		}
+		.coolinput input[type=email].input:focus {
+			outline: none;
+		}
+		.coolinput input[type=password].input {
+			padding: 11px 10px;
+			font-size: 2rem;
+			border: 2px #b26f66 solid;
+			border-radius: 5px;
+			background: #e8e8e8;
+			color: black;
+		}
+		.coolinput input[type=password].input:focus {
+			outline: none;
+		}
+		.button-container {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+		button {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			color: whitesmoke;
+			background-color: #b26f66;
+			text-decoration: none;
+			font-weight: bold;
+			text-align: center;
+			border: 2px solid transparent;
+			padding: 13px 30px;
+			border-radius: 30px;
+			transition: 0.4s;
+		}
+		button:hover {
+			background-color: transparent;
+			border: 2px solid #FF9999;
+			cursor: pointer;
+			color: #333;
+		}
+		.error-msg {
+			color: #D8000C;
+			background-color: #FFBABA;
+		}
+		.success-msg {
+			color: #270;
+			background-color: #DFF2BF;
+		}
+	</style>
+	<section class="articles1">
+		<form method="post">
+			{% if error %}
+				<div class="error-msg">
+					<i class="fa fa-times-circle"></i>
+					{{ error.messageKey|trans(error.messageData, 'security') }}
+				</div>
+			{% endif %}
+			{% for flashMessage in app.flashes('success') %}
+				<div class="success-msg">
+					<i class="fa fa-check"></i>
+					{{flashMessage}}
+				</div>
+			{% endfor %}
+			{% if app.user %}
+				<div class="mb-3">
+					<a href="{{ path('app_logout') }}">
+						Logout
+					</a>
+				</div>
+			{% endif %}
+			<h2 class="h3 mb-3 font-weight-normal" style=" text-align:center;">
+				CONNEXION
+			</h2>
+			<div class="coolinput">
+				<label for="input" class="text">
+					E-mail:
+				</label>
+				<input name="email" id="inputEmail" class="input" type="email" value="{{ last_username }}" autocomplete="email" required autofocus>
+			</div>
+			<div class="coolinput">
+				<label for="input" class="text">
+					Mot de passe:
+				</label>
+				<input name="password" id="inputPassword" class="input" type="password" autocomplete="current-password" required>
+			</div>
+			<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+			<div class="button-container">
+				<button type="submit">
+					Connexion
+				</button>
+			</div>
+		</form>
+		<div class="button-container">
+			<a href="{{path("app_forgot_password_request")}}" style="text-decoration:none;">
+				<button type="button">
+					Réinitialiser le mot de passe
+				</button>
+			</a>
+		</div>
+
+	</section>
+
+
+{% endblock %}

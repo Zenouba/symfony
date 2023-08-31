@@ -1,0 +1,162 @@
+<!-- preloader
+  ================================================== -->
+<div id="preloader">
+	<div id="loader"></div>
+</div>
+
+<!-- *****header***** -->
+<style>
+	.logo {
+		display: block;
+		max-width: 200px;
+		height: auto;
+		margin: 0 auto;
+	}
+
+	.logo img {
+		width: 100%;
+		height: 60vh;
+	}
+</style>
+<header class="s-header">
+
+	<div class="row s-header__content">
+
+		<div class="s-header__logo">
+			<a class="logo" href="{{path('app_main')}}">
+				<img src="{{ asset('assets/imgs/logo1.png') }}" alt="Homepage">
+				<br/>
+			</a>
+		</div>
+
+		<nav class=" s-header__nav-wrap">
+
+			<h2 class="s-header__nav-heading h6">
+				Site Navigation
+			</h2>
+
+			<ul class="s-header__nav">
+				<li {% if app.request.attributes.get('_route') == 'app_annonces_home' %} class="current" {% endif %}>
+					<a href="{{ path('app_main') }}" title="">
+						ACCUEIL
+					</a>
+				</li>
+				<li class="has-children {% if app.request.attributes.get('_route') starts with 'app_annonce_by_category' %} current {% endif %} ">
+					<a href="#0" title="">
+						NOS CATÉGORIES
+					</a>
+					<ul class="sub-menu">
+						<li>
+							<a href="{{path("app_annonce_by_category",{categorie: 'Immobilier'})}}">
+								Immobilier
+							</a>
+						</li>
+						<li>
+							<a href="{{path("app_annonce_by_category",{categorie: 'Voitures & Motos'})}}">
+								Voitures & Motos
+							</a>
+						</li>
+						<li>
+							<a href="{{path("app_annonce_by_category",{categorie: 'Service'})}}">
+								Service
+							</a>
+						</li>
+						<li>
+							<a href="{{path("app_annonce_by_category",{categorie: 'Vêtements'})}}">
+								Vêtements
+							</a>
+						</li>
+						<li>
+							<a href="{{path("app_annonce_by_category",{categorie: 'Mobiles & Tablettes'})}}">
+								Mobiles & Tablettes
+							</a>
+						</li>
+						<li>
+							<a href="{{path("app_annonce_by_category",{categorie: 'Autre'})}}">
+								Autre
+							</a>
+						</li>
+					</ul>
+				</li>
+			</li>
+			<li {% if app.request.attributes.get('_route') == 'app_about' %} class="current" {% endif %}>
+				<a href="{{path("app_about")}}" title="">
+					À PROPOS
+				</a>
+			</li>
+			<li {% if app.request.attributes.get('_route') == 'app_contact' %} class="current" {% endif %}>
+				<a href="{{path("app_contact")}}" title="">
+					NOUS CONTACTER
+				</a>
+			</li>
+			{% if app.user %}
+				<li class="nav-item {% if app.request.attributes.get('_route') == 'app_logout' %}current{% endif %}">
+					<a class="nav-link" href="{{ path('app_logout') }}">
+						DÉCONNEXION
+					</a>
+				</li>
+				{% if "ROLE_ADMIN" not in app.user.roles %}
+					<li class="nav-item {% if app.request.attributes.get('_route') == 'app_user' %} current {% endif %}">
+						<a class="nav-link" href="{{path("app_user")}}">
+							<i class="fa-regular fa-user"></i>
+						</a>
+					</li>
+				{% else %}
+					<li {% if app.request.attributes.get('_route') == 'admin_profil' %} class="current" {% endif %}>
+						<a class="nav-link" href="{{path("admin_profil")}}">
+							<i class="fa-regular fa-user" style="font-size: 20px;"></i>
+						</a>
+					</li>
+				{% endif %}
+			</li>
+		{%else %}
+			<li {% if app.request.attributes.get('_route') == 'app_register' %} class="current" {% endif %}>
+				<a href="{{path("app_register")}}" title="">
+					INSCRIPTION
+				</a>
+			</li>
+			<li {% if app.request.attributes.get('_route') == 'app_login' %} class="current" {% endif %}>
+				<a href="{{path("app_login")}}" title="">
+					CONNEXION
+				</a>
+			</li>
+		{% endif %}
+	</ul>
+	<!-- ****end header__nav**** -->
+
+	<a href="#0" title="Close Menu" class="s-header__overlay-close close-mobile-menu">
+		Close
+	</a>
+</nav>
+<!-- ****end header__nav-wrap****** -->
+
+<a class="s-header__toggle-menu" href="#0" title="Menu">
+	<span>
+		Menu
+	</span>
+</a>
+
+<div class="s-header__search">
+
+	<form role="search" action="{{path("annonce_search")}}" method="get" class="s-header__search-form" action="#">
+		<label>
+			<span class="hide-content">
+				Rechercher:
+			</span>
+			<input type="search" class="s-header__search-field" placeholder="Tapez le mot-clé" value="" name="search" title="Search for:" autocomplete="off">
+		</label>
+		<input type="submit" class="s-header__search-submit" value="Rechercher">
+	</form>
+
+	<a href="#0" title="Close Search" class="s-header__overlay-close">
+		Close
+	</a>
+
+</div>
+<!-- end search wrap -->
+
+<a class="s-header__search-trigger" href="#">
+	<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24">
+		<path d="M10 18a7.952 7.952 0 004.897-1.688l4.396 4.396 1.414-1.414-4.396-4.396A7.952 7.952 0 0018 10c0-4.411-3.589-8-8-8s-8 3.589-8 8 3.589 8 8 8zm0-14c3.309 0 6 2.691 6 6s-2.691 6-6 6-6-2.691-6-6 2.691-6 6-6z"></path>
+	</svg>
+</a></div><!-- *****end s-header__content ***--></header><!-- ****end header *****-->

@@ -1,0 +1,145 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+	Annonce
+	{{annonces.titre}}
+{% endblock %}
+{% block head %}
+{% endblock %}
+{% block body %}
+
+	<style>
+		.button-container {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+		button {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			background-color: #b26f66;
+			border: 2px solid transparent;
+			padding: 13px 30px;
+			border-radius: 30px;
+			transition: 0.4s;
+		}
+		button i {
+			color: #333;
+		}
+		button:hover {
+			background-color: transparent;
+			border: 2px solid #b26f66;
+			cursor: pointer;
+		}
+		.success-msg {
+			color: #270;
+			background-color: #dff0d8;
+			border: 1px solid #d6e9c6;
+			color: #3c763d;
+			border-radius: 5px;
+			padding: 10px;
+			border-radius: 5px;
+			width: 50%;
+			margin-top: 20px;
+		}
+		.msg-container {
+			display: flex;
+			justify-content: center;
+		}
+	</style>
+	{% for message in app.flashes("success") %}
+		<div class="msg-container">
+			<div class="success-msg">
+				<i class="fa fa-check"></i>
+				{{ message }}
+			</div>
+		</div>
+	{% endfor %}
+	<br>
+	<br>
+	<section class="articles1">
+		<div class="article-wrapper">
+			<figure>
+				<img src="{{ asset('/uploads/'~annonces.photo) }}" alt=""/>
+			</figure>
+			<div class="article">
+				<h2>
+					{{annonces.titre}}
+				</h2>
+				<p>
+					{{annonces.texte}}
+				</p>
+				<h3>
+					Prix :
+					{{annonces.prix}}
+					MAD
+				</h3>
+				{% if annonces.categorie == 'Service' %}
+					<h3>
+						Type de service :
+						{{annonces.typeservice}}
+					</h3>
+				{% endif %}
+				{% if annonces.categorie == 'Autre' %}
+					<h3>
+						Type :
+						{{annonces.typeservice}}
+					</h3>
+				{% endif %}
+				{% if annonces.categorie == 'Immobilier' %}
+					<h3>
+						Ville :
+						{{annonces.ville}}
+					</h3>
+					<h3>
+						Région :
+						{{annonces.region}}
+					</h3>
+					<h3>
+						Pays :
+						{{annonces.pays}}
+					</h3>
+				{% endif %}
+				{% if annonces.categorie == 'Voitures & Motos' %}
+					<h3>
+						Marque :
+						{{annonces.marque}}
+					</h3>
+				{% endif %}
+				{% if  annonces.categorie == 'Vêtements'%}
+					<h3>
+						Marque :
+						{{annonces.marque}}
+					</h3>
+				{% endif %}
+				{% if  annonces.categorie == 'Mobiles & Tablettes'  %}
+					<h3>
+						Marque :
+						{{annonces.marque}}
+					</h3>
+				{% endif %}
+				<h3>
+					{{annonces.createdAt|date}}
+				</h3>
+				{% if is_granted('ROLE_USER') %}
+					{% if annonces.user.id == app.user.id %}
+						<div class="button-container">
+							<a href="{{ path('annonces_edit', {'id': annonces.id, 'categorie': annonces.categorie}) }}">
+								<button>
+									<i class="fa fa-edit"></i>
+								</button>
+							</a>
+							<a href="{{path("annonces_delete",{id:annonces.id})}}">
+								<button>
+									<i class="fa fa-trash"></i>
+								</button>
+							</a>
+						</div>
+						{% endif%}
+					{% endif %}
+				</div>
+			</div>
+		</section>
+
+	{% endblock %}

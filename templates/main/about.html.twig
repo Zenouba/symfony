@@ -1,0 +1,87 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	À PROPOS
+{% endblock %}
+
+{% block body %}
+	<style>
+		.about {
+			width: 100%;
+			padding: 100px 0;
+			background-color: #e8e8e8;
+		}
+
+		.about img {
+			height: auto;
+			width: 430px;
+		}
+
+		.about-text {
+			width: 550px;
+		}
+		.main {
+			width: 1130px;
+			max-width: 95%;
+			margin: 0 auto;
+			display: flex;
+			align-items: center;
+			justify-content: space-around;
+		}
+
+		.about-text h2 {
+			color: #333;
+			font-size: 3em;
+			text-transform: capitalize;
+			margin-bottom: 20px;
+			text-align: center;
+		}
+
+		.about-text h5 {
+			color: #b26f66;
+			letter-spacing: 2px;
+			font-size: 22px;
+			margin-bottom: 25px;
+			text-transform: capitalize;
+			text-align: center;
+		}
+		.about-text p {
+			color: #333;
+			letter-spacing: 1px;
+			font-size: 18px;
+			text-transform: capitalize;
+			margin-bottom: 45px;
+			line-height: 28px;
+			text-align: center;
+		}
+		span {
+			color: #b26f66;
+			font-weight: 100px;
+		}
+	</style>
+	<section class="about">
+		<div class="main">
+			<div class="about-text">
+				<h2>
+					À PROPOS DE NOUS
+				</h2>
+				<h5>
+					Bienvenue sur notre site d'annonces !
+				</h5>
+				<p>
+					Nous sommes dédiés à fournir une plateforme pour les utilisateurs qui cherchent à acheter, vendre ou échanger différents produits et services.
+					<br>
+					Nous nous efforçons de créer une expérience conviviale pour nos utilisateurs afin qu'ils puissent facilement publier leurs annonces et trouver ce qu'ils recherchent.
+					<br>
+					N'hésitez pas
+					<a href="{{path("app_contact")}}">
+						<span>
+							à nous contacter
+						</span>
+					</a>
+					si vous avez des questions ou des suggestions. Nous sommes là pour vous aider !
+				</p>
+			</div>
+		</div>
+	</section>
+{% endblock %}
